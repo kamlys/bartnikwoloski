@@ -1,24 +1,93 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+﻿/*FONTS*/
+@font-face {
+    font-family: 'Roboto-Bold';
+    src: url('../fonts/Roboto-Bold.ttf') format('truetype');
 }
 
+@font-face {
+    font-family: 'Roboto-MediumItalic';
+    src: url('../fonts/Roboto-MediumItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Roboto-Light';
+    src: url('../fonts/Roboto-Light.ttf') format('truetype');
+}
+
+
+
+body {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-image: url('../Images/background1.jpg');
+    min-height: 1000px;
+}
 /* Set padding to keep content from hitting the edges */
-.body-content {
+/*.body-content {
     padding-left: 15px;
     padding-right: 15px;
+}*/
+
+#top {
+    width: 100%;
 }
 
-/* Override the default bootstrap behavior where horizontal description lists 
-   will truncate terms that are too long to fit in the left column 
-*/
-.dl-horizontal dt {
-    white-space: normal;
+    #top img {
+        width: 100%;
+    }
+
+#logo {
+    width: 700px;
+    margin: 0 auto;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
+#menu {
+    width: 1340px;
+    margin:0 auto;
+}
+
+#menu ol {
+  list-style-type:none;
+  padding:0;
+  margin-top: 15px;
+  height:2em;
+  line-height:1.7em;
+  text-align:center;
+  font-family: Roboto-Bold;
+  font-size: 26px;
+  
+}
+    #menu ol > li > a {
+        float: left;
+        background-image: url('../Images/Menu1.png');
+        background-repeat-y: no-repeat;
+        width: 212px;
+        height: 47px;
+        margin-right: 5px;
+        margin-left: 5px;
+        color: white;
+    }
+
+        #menu ol > li > a:hover {
+        background-image: url('../Images/Menu2.png');
+        text-decoration: none;
+        }
+
+
+#midContent {
+    width: 100%;
+    min-height: 500px;
+    background: rgba(255, 255, 255, 0.7);
+}
+
+#footer {
+    width: 100%;
+    padding-top: 20px;
+    min-height: 100px;
+    text-align: center;
+    font-family: Roboto-Bold;
+    color: rgb(255, 255, 255);
+    line-height: 25px;
+    font-size: 20px;
+
 }
