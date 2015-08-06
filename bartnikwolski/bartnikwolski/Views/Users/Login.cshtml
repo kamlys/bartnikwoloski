@@ -1,0 +1,30 @@
+﻿@model bartnikwolski.ViewModels.UsersViewModel.LoginViewModel
+@{
+    ViewBag.Title = "Zaloguj";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+<div>
+    @using (Html.BeginForm("Login", "Users", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.Login, new { @class = "col-md-2 control-label" })
+            @Html.TextBoxFor(m => m.Login, new { @class = "form-control reg" })
+            @Html.ValidationMessageFor(m => m.Login, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+            @Html.PasswordFor(m => m.Password, new { @class = "form-control reg" })
+            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Zaloguj" />
+            </div>
+        </div>
+    }
+</div>

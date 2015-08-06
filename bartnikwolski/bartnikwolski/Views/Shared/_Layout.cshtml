@@ -40,6 +40,15 @@
 
         tel. kom. 601 238 356 e-mail: bartnikwoloski@wp.pl
 
+        @if(Request.IsAuthenticated)
+        {
+            @Html.ActionLink("Wyloguj", "LogOff", "Users")
+        }
+        else
+        { 
+            @Html.ActionLink("Zaloguj", "Login", "Users")
+        }
+
     </div>
 
     @Scripts.Render("~/bundles/jquery")
