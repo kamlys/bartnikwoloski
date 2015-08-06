@@ -27,7 +27,7 @@ namespace bartnikwolski.Controllers
                 if (db.Users.Any(u => u.Login == model.Login) && Crypto.VerifyHashedPassword(db.Users.First(u => u.Login == model.Login).Password, model.Password))
                 {
                     FormsAuthentication.SetAuthCookie(model.Login, false);
-                    return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Admin");
                 }
                 else
                     ModelState.AddModelError("", "Login bądź hasło niepoprawne.");

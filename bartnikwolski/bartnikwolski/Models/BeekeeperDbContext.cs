@@ -17,5 +17,6 @@ namespace bartnikwolski.Models
 
         public DbSet<Product> Products { get; set; }
         public DbSet<User> Users { get; set; }
+        public DbSet<Page> Pages { get; set; }
     }
 }

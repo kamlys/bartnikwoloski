@@ -34,6 +34,15 @@ namespace bartnikwolski.Migrations
                 Login = "Admin",
                 Password = Crypto.HashPassword("admin"),
             });
+
+            context.Pages.AddOrUpdate(
+                new Page { Title = "Start" },
+                new Page { Title = "O nas" },
+                new Page { Title = "Nasze produkty" },
+                new Page { Title = "Nasze specja³y" },
+                new Page { Title = "Uroda z pasieki" },
+                new Page { Title = "Ciekawostki" }
+                );
         }
     }
 }

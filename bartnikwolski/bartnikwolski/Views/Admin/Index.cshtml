@@ -1,0 +1,12 @@
+﻿@model bartnikwolski.ViewModels.AdminViewModel.Index
+@{
+    ViewBag.Title = "Panel Admina";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@foreach (var item in Model.PageList)
+{
+    <p>@Html.ActionLink(item.Title, "Edit", new { Id = item.PageId })</p>
+}

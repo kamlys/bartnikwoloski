@@ -14,7 +14,7 @@ namespace bartnikwolski.Models
         [Required]
         public string Description { get; set; }
         [Required]
-        public string PictureName { get; set; }
+        public string PictureSource { get; set; }
         [Required]
         public bool IsSpecial { get; set; }
     }
