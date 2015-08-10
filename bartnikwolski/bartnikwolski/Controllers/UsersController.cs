@@ -1,4 +1,5 @@
 ﻿using bartnikwolski.Models;
+using bartnikwolski.ViewModels.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,7 +21,7 @@ namespace bartnikwolski.Controllers
         }
 
         [HttpPost]
-        public ActionResult Login(ViewModels.UsersViewModel.LoginViewModel model)
+        public ActionResult Login(LoginViewModel model)
         {
             if (ModelState.IsValid)
             {

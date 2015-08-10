@@ -1,12 +1,14 @@
-﻿@model bartnikwolski.ViewModels.AdminViewModel.Index
+﻿@model bartnikwolski.ViewModels.Admin.IndexViewModel
 @{
     ViewBag.Title = "Panel Admina";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h2>@ViewBag.Title</h2>
-
-@foreach (var item in Model.PageList)
-{
-    <p>@Html.ActionLink(item.Title, "Edit", new { Id = item.PageId })</p>
-}
+<ul>
+    @foreach (var item in Model.PageList)
+    {
+        <li>@Html.ActionLink(item.Title, "EditPage", new { title = item.Title })</li>
+    }
+    <li>@Html.ActionLink("Lista Produktów", "Items")</li>
+</ul>

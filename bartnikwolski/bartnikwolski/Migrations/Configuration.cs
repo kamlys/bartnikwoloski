@@ -31,17 +31,17 @@ namespace bartnikwolski.Migrations
 
             context.Users.AddOrUpdate(new User
             {
-                Login = "Admin",
+                Login = "admin",
                 Password = Crypto.HashPassword("admin"),
             });
 
             context.Pages.AddOrUpdate(
-                new Page { Title = "Start" },
-                new Page { Title = "O nas" },
-                new Page { Title = "Nasze produkty" },
-                new Page { Title = "Nasze specja³y" },
-                new Page { Title = "Uroda z pasieki" },
-                new Page { Title = "Ciekawostki" }
+                new Page { Title = "Start", HasProducts = false },
+                new Page { Title = "O nas", HasProducts = false },
+                new Page { Title = "Nasze produkty", HasProducts = true },
+                new Page { Title = "Nasze specja³y", HasProducts = true },
+                new Page { Title = "Uroda z pasieki", HasProducts = false },
+                new Page { Title = "Ciekawostki", HasProducts = false }
                 );
         }
     }

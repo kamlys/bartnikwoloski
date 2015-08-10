@@ -1,4 +1,4 @@
-﻿@model bartnikwolski.ViewModels.AdminViewModel.Edit
+﻿@model bartnikwolski.ViewModels.Admin.EditViewModel
 @{
     ViewBag.Title = "Edytuj";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -6,15 +6,15 @@
 <h2>@ViewBag.Title</h2>
 
 <div>
-    @using (Html.BeginForm("Edit", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    @using (Html.BeginForm("EditPage", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(m=>m.PageId)
+        @Html.HiddenFor(m=>m.Title)
 
         <div class="form-group">
             @Html.LabelFor(m => m.Title, new { @class = "col-md-2 control-label" })
-            @Html.TextBoxFor(m => m.Title, new { @class = "form-control reg" })
+            @Html.DisplayFor(m => m.Title, new { @class = "form-control reg" })
             @Html.ValidationMessageFor(m => m.Title, "", new { @class = "text-danger" })
         </div>
         <div class="form-group">
@@ -29,7 +29,7 @@
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Zapisz" />
-                <a href='@Url.Action("Index", "Admin")'><input type="button" value="Cofnij" /></a>
+                <a href='@Url.Action("Index", "Admin")'><input type="button" value="Wróć" /></a>
             </div>
         </div>
     }

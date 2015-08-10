@@ -8,13 +8,13 @@ namespace bartnikwolski.Models
 {
     public class Page
     {
-        public int PageId { get; set; }
-
         [Required]
+        [Key]
         public string Title { get; set; }
-
         public string Content { get; set; }
-
         public string PictureSource { get; set; }
+        public bool HasProducts { get; set; }
+
+        public virtual ICollection<Product> Products { get; set; }
     }
 }

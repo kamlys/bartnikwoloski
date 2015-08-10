@@ -4,14 +4,15 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace bartnikwolski.Models
+namespace bartnikwolski.ViewModels.User
 {
-    public class User
+    public class LoginViewModel
     {
         [Required]
-        [Key]
         public string Login { get; set; }
+
         [Required]
+        [Display(Name = "Hasło")]
         public string Password { get; set; }
     }
 }

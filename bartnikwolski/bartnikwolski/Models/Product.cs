@@ -15,7 +15,8 @@ namespace bartnikwolski.Models
         public string Description { get; set; }
         [Required]
         public string PictureSource { get; set; }
-        [Required]
-        public bool IsSpecial { get; set; }
+
+        public string PageTitle { get; set; }
+        public virtual Page Page { get; set; }
     }
 }
