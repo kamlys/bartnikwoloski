@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
 
 namespace bartnikwolski.Controllers
@@ -30,6 +31,7 @@ namespace bartnikwolski.Controllers
             {
                 Content = temp.Content,
                 Title = temp.Title,
+                PictureSource = temp.PictureSource,
                 HasItems = temp.HasProducts
             };
             return View(model);
@@ -43,7 +45,7 @@ namespace bartnikwolski.Controllers
                 var tempPage = db.Pages.First(p => p.Title == model.Title);
                 if (model.Picture != null && tempPage.PictureSource != null)
                 {
-                    string oldpath = Request.MapPath("~/" + tempPage.PictureSource);
+                    string oldpath = Request.MapPath("~/Content/Photos/" + tempPage.PictureSource);
                     if (System.IO.File.Exists(oldpath))
                         System.IO.File.Delete(oldpath);
                 }
@@ -104,7 +106,27 @@ namespace bartnikwolski.Controllers
                 System.IO.File.Delete(path);
             db.Products.Remove(product);
             db.SaveChanges();
-            return RedirectToAction("items");
+            return RedirectToAction("Items");
+        }
+
+        [HttpGet]
+        public ActionResult AccountSettings()
+        {
+            AccountSettingsViewModel model = new AccountSettingsViewModel();
+            model.Login = User.Identity.Name;
+            return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult AccountSettings(AccountSettingsViewModel model)
+        {
+            var thisuser = db.Users.First(u => u.Login == User.Identity.Name);
+            if (ModelState.IsValid && Crypto.VerifyHashedPassword(thisuser.Password, model.OldPassword))
+            {
+                thisuser.Password = Crypto.HashPassword(model.Password);
+                db.SaveChanges();
+            }
+            return View();
         }
     }
 }

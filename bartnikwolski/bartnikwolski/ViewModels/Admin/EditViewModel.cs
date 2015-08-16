@@ -15,6 +15,9 @@ namespace bartnikwolski.ViewModels.Admin
         public string Content { get; set; }
 
         [Display(Name = "Zdjęcie")]
+        public string PictureSource { get; set; }
+
+        [Display(Name="Zmień")]
         public HttpPostedFileBase Picture { get; set; }
 
         public bool HasItems { get; set; }

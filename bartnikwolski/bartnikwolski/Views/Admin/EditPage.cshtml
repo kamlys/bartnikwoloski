@@ -23,6 +23,9 @@
             @Html.ValidationMessageFor(m => m.Content, "", new { @class = "text-danger" })
         </div>
         <div>
+            <a href="~/Content/Photos/@Model.PictureSource"><img src="@Url.Content("~/Content/Photos/" + Model.PictureSource)" style="max-width: 500px; max-height: 500px;" /></a>
+        </div>
+        <div>
             @Html.LabelFor(m => m.Picture)
             @Html.TextBoxFor(m => m.Picture, new { type = "file", multiple = "true" })
         </div>

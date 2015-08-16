@@ -41,7 +41,7 @@
                     @Html.DisplayFor(modelItem => item.Description)
                 </td>
                 <td>
-                    <img src="~/@item.PictureSource" />
+                    <img src="~/@item.PictureSource" style="max-height: 300px; max-width: 500px;"/>
                 <td>
                     @Html.ActionLink("Edytuj", "EditItem", new { id=item.ProductId }) |
                     @Html.ActionLink("Usuń", "DeleteItem", new { id=item.ProductId })

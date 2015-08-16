@@ -16,12 +16,21 @@
     </div>
     <div id="menu">
         <ol>
-            <li><a href="#">Start</a></li>
-            <li><a href="#">O nas</a></li>
-            <li><a href="#">Nasze produkty</a></li>
-            <li><a href="#">Nasze specjały</a></li>
-            <li><a href="#">Uroda z pasieki</a></li>
-            <li><a href="#">Ciekawostki</a></li>
+            @if (Request.IsAuthenticated)
+            {
+                <li><a href="@Url.Action("Index", "Admin")">Edycja zawartości stron</a></li>
+                <li><a href="@Url.Action("Items", "Admin")">Lista produktów</a></li>
+                <li><a href="@Url.Action("AccountSettings", "Admin")">Ustawienia konta</a></li>
+            }
+            else
+            {
+                <li><a href="#">Start</a></li>
+                <li><a href="#">O nas</a></li>
+                <li><a href="#">Nasze produkty</a></li>
+                <li><a href="#">Nasze specjały</a></li>
+                <li><a href="#">Uroda z pasieki</a></li>
+                <li><a href="#">Ciekawostki</a></li>
+            }
         </ol>
     </div>
     <div id="midContent">
@@ -40,12 +49,12 @@
 
         tel. kom. 601 238 356 e-mail: bartnikwoloski@wp.pl
 
-        @if(Request.IsAuthenticated)
+        @if (Request.IsAuthenticated)
         {
             @Html.ActionLink("Wyloguj", "LogOff", "Users")
         }
         else
-        { 
+        {
             @Html.ActionLink("Zaloguj", "Login", "Users")
         }
 
