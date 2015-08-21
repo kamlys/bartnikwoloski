@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html>
+<html ng-app="App">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,7 +19,7 @@
             @if (Request.IsAuthenticated)
             {
                 <li><a href="@Url.Action("Index", "Admin")">Edycja zawartości stron</a></li>
-                <li><a href="@Url.Action("Items", "Admin")">Lista produktów</a></li>
+                <li><a href="@Url.Action("Products", "Admin")">Lista produktów</a></li>
                 <li><a href="@Url.Action("AccountSettings", "Admin")">Ustawienia konta</a></li>
             }
             else
@@ -63,5 +63,8 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/angular.min.js"></script>
+    <script src="~/Scripts/_ng/ngmodule.js"></script>
+    <script src="~/Scripts/_ng/adminPanelControlller.js"></script>
 </body>
 </html>

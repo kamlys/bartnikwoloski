@@ -22,9 +22,11 @@ namespace bartnikwolski.ViewModels.Admin
         public HttpPostedFileBase PictureSource { get; set; }
 
         [Required]
-        [Display(Name = "Strona")]
-        public string SelectedPageTitle { get; set; }
+        [Display(Name="Nasze produkty")]
+        public bool IsProduct { get; set; }
 
-        public IEnumerable<SelectListItem> Pages { get; set; }
+        [Required]
+        [Display(Name = "Nasze specjały")]
+        public bool IsSpecial { get; set; }
     }
 }

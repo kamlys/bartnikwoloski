@@ -4,25 +4,30 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace bartnikwolski.Models
+namespace bartnikwolski.ViewModels.Admin
 {
-    public class Product
+    public class ProductSaveViewModel
     {
         public int ProductId { get; set; }
 
         [Required]
+        [Display(Name = "Nazwa")]
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Opis")]
         public string Description { get; set; }
 
         [Required]
-        public string PictureSource { get; set; }
+        [Display(Name = "Zdjęcie")]
+        public HttpPostedFileBase PictureSource { get; set; }
 
         [Required]
+        [Display(Name = "Nasze produkty")]
         public bool IsProduct { get; set; }
 
         [Required]
+        [Display(Name = "Nasze specjały")]
         public bool IsSpecial { get; set; }
     }
 }

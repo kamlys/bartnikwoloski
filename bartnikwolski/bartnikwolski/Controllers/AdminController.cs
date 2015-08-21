@@ -62,18 +62,29 @@ namespace bartnikwolski.Controllers
             return View();
         }
 
-        public ActionResult Items()
+        public JsonResult GetProducts()
         {
-            var items = db.Products.ToList();
-            return View(items);
+            var allproducts = db.Products.Select(p => new
+            {
+                ProductId = p.ProductId,
+                Description = p.Description,
+                Name = p.Name,
+                PictureSource = p.PictureSource,
+                IsSpecial = p.IsSpecial,
+                IsProduct = p.IsProduct
+            }).AsEnumerable();
+            return Json(allproducts, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Products()
+        {
+            return View();
         }
 
         [HttpGet]
         public ActionResult CreateItem()
         {
-            CreateItemViewModel model = new CreateItemViewModel();
-            model.Pages = db.Pages.Where(p => p.HasProducts == true).Select(p => new SelectListItem { Text = p.Title });
-            return View(model);
+            return View();
         }
 
         [HttpPost]
@@ -89,16 +100,17 @@ namespace bartnikwolski.Controllers
                 {
                     Description = model.Description,
                     Name = model.Name,
-                    PageTitle = model.SelectedPageTitle,
+                    IsProduct = model.IsProduct,
+                    IsSpecial = model.IsSpecial,
                     PictureSource = "Content/Photos/" + filePath
                 });
                 db.SaveChanges();
-                return RedirectToAction("Items");
+                Response.Redirect("Products");
             }
             return View(model);
         }
 
-        public ActionResult DeleteItem(int id)
+        public JsonResult Delete(int id)
         {
             Product product = db.Products.First(p => p.ProductId == id);
             string path = Request.MapPath("~/" + product.PictureSource);
@@ -106,7 +118,7 @@ namespace bartnikwolski.Controllers
                 System.IO.File.Delete(path);
             db.Products.Remove(product);
             db.SaveChanges();
-            return RedirectToAction("Items");
+            return null;
         }
 
         [HttpGet]
@@ -127,6 +139,30 @@ namespace bartnikwolski.Controllers
                 db.SaveChanges();
             }
             return View();
+        }
+
+        public JsonResult SaveChanges(Product product)//int id, string title, string name, string description)
+        {
+            db.Entry(product).State = System.Data.Entity.EntityState.Modified;
+            db.SaveChanges();
+            return null;
+        }
+
+        public JsonResult DeleteFile(string source)
+        {
+            string path = Request.MapPath("~/" + source);
+            if (System.IO.File.Exists(path))
+                System.IO.File.Delete(path);
+            return null;
+        }
+
+        public JsonResult SaveFile(HttpPostedFileBase file)
+        {
+            string fileName = Guid.NewGuid().ToString();
+            string filePath = fileName + Path.GetExtension(file.FileName);
+            string path = Path.Combine(Server.MapPath(@"~/Content/Photos/"), filePath);
+            file.SaveAs(path);
+            return Json("Content/Photos/" + filePath, JsonRequestBehavior.AllowGet);
         }
     }
 }

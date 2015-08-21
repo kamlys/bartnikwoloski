@@ -40,12 +40,16 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.SelectedPageTitle, "Podstrona", new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.IsProduct, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(
-                x => x.SelectedPageTitle,
-                new SelectList(Model.Pages, "Text", "Text")
-                )
+                @Html.CheckBoxFor(m => m.IsProduct)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsSpecial, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.CheckBoxFor(m => m.IsSpecial)
             </div>
         </div>
 
@@ -58,5 +62,5 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Wróć do listy", "Products")
 </div>

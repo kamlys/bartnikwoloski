@@ -14,7 +14,5 @@ namespace bartnikwolski.Models
         public string Content { get; set; }
         public string PictureSource { get; set; }
         public bool HasProducts { get; set; }
-
-        public virtual ICollection<Product> Products { get; set; }
     }
 }

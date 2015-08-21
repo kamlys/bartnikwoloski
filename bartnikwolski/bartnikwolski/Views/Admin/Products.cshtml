@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Produkty";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div ng-controller="adminPanel">
+    <p>
+        <a href="@Url.Action("CreateItem")"><input type="button" class="btn btn-default" value="Dodaj" /></a>
+        <input type="text" ng-model="search.Name" placeholder="Szukaj po nazwie.." />
+    </p>
+    <table ng-table="tableParams" class="table">
+        <tr>
+            <th>
+                Nazwa
+            </th>
+            <th>
+                Opis
+            </th>
+            <th>
+                Nasze Produkty
+            </th>
+            <th>
+                Nasze Specjały
+            </th>
+            <th>
+                Zdjęcie
+            </th>
+            <th></th>
+        </tr>
+        <tbody ng-repeat="product in Products | filter:search">
+            <tr>
+                <td>
+                    <p data-ng-hide="product.editMode">{{ product.Name }}</p>
+                    <input data-ng-show="product.editMode" type="text" data-ng-model="product.Name" />
+                </td>
+                <td>
+                    <p data-ng-hide="product.editMode">{{ product.Description }}</p>
+                    <div ng-show="product.editMode">
+                        <textarea ng-model="product.Description" rows="5" cols="40"></textarea>
+                    </div>
+                </td>
+                <td>
+                    <p data-ng-hide="product.editMode">
+                        <a ng-if="product.IsProduct">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </a>
+                        <a ng-if="!product.IsProduct">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </p>
+                    <input data-ng-show="product.editMode" type="checkbox" data-ng-model="product.IsProduct" />
+                </td>
+                <td>
+                    <p data-ng-hide="product.editMode">
+                        <a ng-if="product.IsSpecial">
+                            <span class="glyphicon glyphicon-ok"></span>
+                        </a>
+                        <a ng-if="!product.IsSpecial">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </p>
+                    <input data-ng-show="product.editMode" type="checkbox" data-ng-model="product.IsSpecial" />
+                </td>
+                <td>
+                    <p data-ng-hide="product.editMode"><img src="~/{{product.PictureSource}}" style="max-height: 300px; max-width: 300px;" /></p>
+                    <input data-ng-show="product.editMode" type="file" name="file" onchange="angular.element(this).scope().uploadFile(this.files)" />
+                </td>
+                <td></td>
+                <td>
+                    <p data-ng-hide="product.editMode"><a data-ng-click="toggleEdit(product)" href="javascript:;">Edytuj</a> | <a data-ng-click="delete(product)" href="javascript:;">Usuń</a></p>
+                    <p data-ng-show="product.editMode"><a data-ng-click="save(product)" href="javascript:;">Zapisz</a> | <a data-ng-click="toggleEdit(product)" href="javascript:;">Anuluj</a></p>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
